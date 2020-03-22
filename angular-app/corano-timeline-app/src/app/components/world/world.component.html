@@ -1,0 +1,41 @@
+<h3>Verdens data</h3>
+<div class="linemap" *ngIf="worldData">
+    <div class="controls">
+        <h3>Chart controls</h3>
+        <div>
+        <mat-slide-toggle (change)="dataToLog($event)">Toggle Log10</mat-slide-toggle>
+        </div>
+    
+        <div class="button-space" *ngFor="let item of buttons">
+        <mat-slide-toggle [checked]="1" (change)="ToggleDataSet($event, item.short)">{{ item.name }}</mat-slide-toggle>
+        </div>
+
+        <h3>Set from date</h3>
+        <div style="margin-bottom: 5px;">
+        <mat-slide-toggle (change)="resetFromDate($event)">Enable</mat-slide-toggle>
+        </div>
+        <mat-form-field class="mat-form-format">
+            <mat-select (selectionChange)="setFromDate($event)" [disabled]="!dateToggle">
+                <mat-option *ngFor="let item of worldData" [value]="item.date">{{ item.date }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+    </div>
+    <div class="linechart">
+    <google-chart #chart
+   [title]="'Corona World Statistics'"
+   [type]="'LineChart'"
+   [data]="lineData"
+   [columnNames]="columns"
+   [options]="{hAxis:{title: 'Date'}, vAxis:{title: 'Count'}, colors: lineColors}"
+   [width]="1200"
+   [height]="800">
+</google-chart>
+
+    </div>
+</div>
+
+<h3>Lande data</h3>
+<div *ngIf="countryData">
+    <span *ngFor="let item of countryData"> {{ item.country }} </span>
+</div>

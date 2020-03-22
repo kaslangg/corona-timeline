@@ -1,0 +1,34 @@
+.linemap {
+  display: flex;
+  flex-direction: row;  
+
+  .controls {
+    padding: 20px;
+    margin: 50px 0;
+    background: rgb(100, 100, 100);
+    color: white;
+    align-content: center;
+    flex-direction: column;
+    display: grid;
+
+    .button-space {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+  }
+}
+
+.mat-select {
+    color: black;
+    background: white;
+
+}
+
+.mat-select-arrow-wrapper {
+    background: deeppink;
+}
+
+.mat-form-format {
+    border-top: 0;
+    background: lightgray;
+}
