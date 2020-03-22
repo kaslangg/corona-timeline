@@ -11,12 +11,14 @@ import { WorldComponent } from './components/world/world.component';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
+import { CountrymapComponent } from './components/countrymap/countrymap.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WorldComponent,
-    GoogleLinechartComponent
+    GoogleLinechartComponent,
+    CountrymapComponent
   ],
   imports: [
     BrowserModule,

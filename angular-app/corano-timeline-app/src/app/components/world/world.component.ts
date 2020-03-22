@@ -1,3 +1,4 @@
+import { Timeline } from './../../core/models/timeline.model';
 import { DataDate } from './../../core/models/data.model';
 import { Country } from './../../core/models/country.model';
 import { Observable } from 'rxjs';
@@ -12,6 +13,12 @@ import { Component, OnInit } from '@angular/core';
 export class WorldComponent implements OnInit {
   public worldData: DataDate[];
   public countryData: Country[];
+  public timelineData: Timeline[];
+  public timelinePlotData = [['Germany', 40], ['Brazil', 64]];
+  public geoColumns = ['Country', 'Test'];
+  public TimelineDates;
+  public countryAtDate;
+  public selectedDate;
   public lineData;
   public columns;
   public lineColors;
@@ -33,7 +40,15 @@ export class WorldComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getWorldData().subscribe(data => { this.worldData = data, this.makeLineWorldData()});
-    this.api.getCountryData().subscribe(data => this.countryData = data);
+    this.api.getCountryData().subscribe(data => {this.countryData = data});
+    this.api.getTimeline().subscribe(data => {this.timelineData = data, this.initGeoMap() })
+  }
+
+  initGeoMap() {
+    this.TimelineDates = [];
+    this.timelineData.forEach(entry => {
+      this.TimelineDates.push(entry.date);
+    })
   }
 
   makeLineWorldData(log = false, casesTotal=true, deathsTotal=true, casesNew=true, deathsNew=true) {

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Country } from './models/country.model';
+import { Timeline } from './models/timeline.model';
 
 @Injectable({providedIn: 'root'})
 export class ApiService {
@@ -14,6 +15,10 @@ export class ApiService {
 
   public getWorldData(): Observable<DataDate[]> {
     return this.httpClient.get<DataDate[]>('http://localhost:8088/api/worldData')
+  }
+
+  public getTimeline(): Observable<Timeline[]> {
+    return this.httpClient.get<Timeline[]>('http://localhost:8088/api/timeline')
   }
 
 }

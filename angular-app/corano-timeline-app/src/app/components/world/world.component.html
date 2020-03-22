@@ -1,4 +1,3 @@
-<h3>Verdens data</h3>
 <div class="linemap" *ngIf="worldData">
     <div class="controls">
         <h3>Chart controls</h3>
@@ -35,7 +34,32 @@
     </div>
 </div>
 
-<h3>Lande data</h3>
-<div *ngIf="countryData">
-    <span *ngFor="let item of countryData"> {{ item.country }} </span>
+<div class="linemap" *ngIf="timelineData">        
+    <div class="controls">
+    <h3>Chart controls</h3>
+        <div class="button-space" *ngFor="let item of buttons">
+        <mat-slide-toggle [checked]="">{{ item.name }}</mat-slide-toggle>
+        </div>
+        <mat-form-field class="mat-form-format">
+            <mat-select>
+                <mat-option *ngFor="let item of TimelineDates" [value]="item">{{ item }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="map-container">
+    <google-chart #chart
+   [title]="'Corona World Timeline'"
+   [type]="'GeoChart'"
+   [data]="timelinePlotData"
+   [columnNames]="geoColumns"
+   [options]="{}"
+   [width]="900"
+   [height]="600"></google-chart>
+
+    </div>
+
+
+
+
 </div>
