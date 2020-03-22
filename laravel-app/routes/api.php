@@ -23,6 +23,10 @@ Route::get('allCountries', function () {
     return CoronaData::getAllCountriesData();
 });
 
+Route::get('timeline', function () {
+    return CoronaData::getCountiesTimeLine();
+});
+
 Route::get('worldData', function () {
     return CoronaData::getWorldData();
 });

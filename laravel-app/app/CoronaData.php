@@ -28,4 +28,11 @@ class CoronaData extends Model
 
         return WorldDto::toApi($data['World']);
     }
+
+    public static function getCountiesTimeLine(): array {
+        $dates = self::pluck('date')->toArray();
+        $dates = array_values(array_unique($dates));
+        $data =  CoronaData::all('location','date', 'new_cases', 'new_deaths', 'total_cases', 'total_deaths')->groupBy('date');
+        return CountryDto::TimelineToApi($data, $dates);
+    }
 }
